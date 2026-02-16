@@ -194,7 +194,7 @@ export default function Create() {
             <Copy size={18} />
             <span>Copy Link</span>
           </button>
-
+          
         </div>
       </div>
     </div>
