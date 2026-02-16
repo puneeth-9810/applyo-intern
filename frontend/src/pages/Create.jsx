@@ -185,14 +185,16 @@ export default function Create() {
           <button
             onClick={handleCopy}
             disabled={!pollLink}
-            className={`p-3 rounded-xl ${
-              pollLink
-                ? "bg-purple-500 hover:bg-purple-600"
-                : "bg-gray-500 cursor-not-allowed"
-            }`}
-          >
-            <Copy size={22} />
+            className={`flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition ${
+                    pollLink
+                      ? "bg-purple-500 hover:bg-purple-600"
+                      : "bg-gray-500 cursor-not-allowed"
+                  }`}
+                >
+            <Copy size={18} />
+            <span>Copy Link</span>
           </button>
+
         </div>
       </div>
     </div>
