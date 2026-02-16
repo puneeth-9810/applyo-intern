@@ -32,12 +32,29 @@ const pool = new Pool({
 });
 
 
+const allowedOrigins = [
+  process.env.CLIENT_URL
+];
+
 const io = new Server(server, {
   cors: {
-    origin: process.env.CLIENT_URL || "*",
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+
+      if (
+        allowedOrigins.includes(origin) ||
+        origin.includes("vercel.app")
+      ) {
+        return callback(null, true);
+      }
+
+      callback(new Error("Socket CORS not allowed"));
+    },
     methods: ["GET", "POST"],
-  },
+    credentials: true
+  }
 });
+
 
 io.on("connection", (socket) => {
   socket.on("joinPoll", (pollId) => {
