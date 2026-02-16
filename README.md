@@ -94,7 +94,7 @@ The system handles multiple important edge cases.
 - Duplicate votes (same IP or token) are blocked.
 - Vote without selecting an option is prevented.
 - Vote button disables after successful submission.
-- Options maintain fixed order during real-time updates.
+- Options maintain fixed order during real-time updates for good structure.
 
 ---
 
@@ -109,7 +109,7 @@ The system handles multiple important edge cases.
 
 ## Deployment Edge Cases
 
-- Dynamic CORS configuration supports production and preview URLs.
+- Dynamic CORS configuration supports production and preview URLs(for vercel domain).
 - Environment-based configuration for local and production environments.
 - Handles Render free-tier cold starts.
 
@@ -127,7 +127,7 @@ This is a tradeoff of using IP protection.
 
 ---
 
-## 2. Token Reset via Incognito
+## 2. Token Resetting
 
 Users can potentially bypass browser-token protection by:
 
@@ -165,7 +165,6 @@ If extended further, the following enhancements could be implemented:
 - User authentication (Google OAuth or email login)
 - Rate limiting middleware
 - CAPTCHA integration
-- Device fingerprinting
 - Poll expiration feature
 - Admin analytics dashboard
 - Horizontal scaling with Redis for Socket.io
@@ -174,14 +173,7 @@ If extended further, the following enhancements could be implemented:
 
 # Architecture Overview
 
-Frontend (Vercel)
-|
-| REST + WebSocket
-v
-Backend (Render)
-|
-v
-PostgreSQL (Neon)
+Frontend (Vercel) ---> REST + WebSocket ---> Backend (Render) ---> PostgreSQL (Neon)
 
 
 Each poll functions as a real-time room. When a vote occurs:
